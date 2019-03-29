@@ -1,5 +1,6 @@
 package com.feranstirman.evaluacion1_pdm_00159817;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,12 +11,13 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public int i1,i2,i3,i4,i5,i6,i7,i8,i9 = 0;
+    public int i1,i2,i3,i4,i5,i6,i7,i8,i9, tot = 0;
     public String us, co;
     LinearLayout l1,l2,l3,l4,l5,l6,l7,l8,l9;
     TextView p1,p2,p3,p4,p5,p6,p7,p8,p9;
     EditText usuario, correo;
     Button btn;
+    public String total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,10 +103,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 p9.setText(Integer.toString(i9));
                 break;
             case R.id.btn:
-
-                String[] lista = {p1.getText().toString(), p2.getText().toString(), p3.getText().toString(), p4.getText().toString(), p5.getText().toString()
-                        p6.getText().toString(), p7.getText().toString(), p8.getText().toString(), p9.getText().toString(), usuario,getText().toString(),
-                        correo.getText().toString()};
+                tot = i1+i2+i3+i4+i5+i6+i7+i8+i9;
+                total = Integer.toString(tot);
+                Intent intent = new Intent(this, NewActivity.class);
+                intent.setType("text/plain");
+                String[] lista = {p1.getText().toString(), p2.getText().toString(), p3.getText().toString(), p4.getText().toString(), p5.getText().toString(),
+                        p6.getText().toString(), p7.getText().toString(), p8.getText().toString(), p9.getText().toString(), usuario.getText().toString(),
+                        correo.getText().toString(), total};
+                intent.putExtra(Intent.EXTRA_TEXT, lista);
+                startActivity(intent);
 
         }
     }
